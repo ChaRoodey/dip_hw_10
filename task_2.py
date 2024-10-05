@@ -3,8 +3,8 @@ from random import randint
 
 class House:
     def __init__(self):
-        self.food = 50
-        self.money = 0
+        self.food = 150
+        self.money = 100
 
 
 class Homelander:
@@ -14,9 +14,9 @@ class Homelander:
         self.house = house
 
     def live_day(self):
-        if self.satiety < 20 and self.house.food >= 15:
+        if self.satiety <= 20 and self.house.food >= 15:
             return self.eat()
-        elif self.house.food < 15:
+        elif self.house.food < 15 and self.house.money >= 30:
             return self.shopping()
         elif self.house.money < 50:
             return self.work()
@@ -37,7 +37,7 @@ class Homelander:
 
     def work(self):
         self.house.money += 10
-        self.satiety -= 20
+        self.satiety -= 15
 
     def eat(self):
         self.satiety += 15
@@ -57,11 +57,11 @@ h1 = Homelander('Андрюша', house1)
 h2 = Homelander('Владюша', house2)
 
 for i in range(100):
-    if h1.is_alive():
-        h1.live_day()
+    if h3.is_alive():
+        h3.live_day()
         if (i + 1) % 5 == 0:
-            print(f'День {i + 1}. Статы: Сытость - {h1.satiety}, '
-                f'Еда в доме - {h1.house.food}, Деньги в доме - {h1.house.money}')
+            print(f'День {i + 1}. Статы: Сытость - {h3.satiety}, '
+                f'Еда в доме - {h3.house.food}, Деньги в доме - {h1.house.money}')
     else:
-        print(f'{h1.name} скончался. Он прожил {i + 1} дней')
+        print(f'{h3.name} скончался. Он прожил {i + 1} дней')
         break

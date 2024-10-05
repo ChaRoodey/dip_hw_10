@@ -6,12 +6,12 @@ class Parent:
 
     def call(self):
         print(f'Привет! Меня зовут {self.name}, мне {self.age} лет '
-              f'и у меня есть дети: {(i for i in self.childs_id)}')
+              f'и у меня есть дети: {", ".join(str(i) for i in self.childs_id)}')
 
-    def calm(self, child_id: int):
-        if child_id in self.childs_id:
-            if not child_id.calm_stat:
-                child_id.calm_stat = True
+    def calm(self, other):
+        if other.child_id in self.childs_id:
+            if not other.calm_stat:
+                other.calm_stat = True
                 print('Ребенок теперь успокоен')
             else:
                 print('Ребенок и так был спокоен')
@@ -31,7 +31,7 @@ class Parent:
 
 
 class Child:
-    def __init__(self,child_id: int, name: str, age: int, calm_stat, feed_stat: bool) -> None:
+    def __init__(self, child_id: int, name: str, age: int, calm_stat, feed_stat: bool) -> None:
         self.child_id = child_id
         self.name = name
         self.age = age
@@ -48,4 +48,4 @@ if __name__ == '__main__':
 
     p1.call()
     p2.call()
-    p1.calm(1)
+    p1.calm(ch3)
